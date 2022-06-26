@@ -45,11 +45,27 @@ Quantifiers can be used to match strings with a certain amount of specified char
 ### OR Operator
 The characters `|` and `[]` can be used to specify more than 1 character to search for. 
 
+* `|` will match a string that is followed by one OR the other character. For example: `ca(t|p)` will match a string that has `ca` followed by either a `t` or a `p`. So, it will match both `cat` and `cap`. It will also [capture](#grouping-and-capturing) the `t` or `p`.
+* `[]` works the same as the `|` but without capturing anything. `ca[tp]` will match both `cat` and `cap`.
+
 ### Character Classes
+Character classes can be searched by using `\d`, `\w`, and `\s`. 
+* `\d` will match any *digit*. 
+* `\w` will match any *alphanumeric* character.
+* `\s` will match any *whitespace* character (this includes tabs and line breaks).
+
 
 ### Flags
+The characters `g`, `m`, and `i` allow us to get even more specific with our searches. 
+* `g` is a global search. This means it will match ALL occurences of our search. 
+* `m` is a multi-line search. When used with `^` or `$` for a multi-line string, it will match the atart or end of *any line* in the string rather than just the beginning or end of the string in general. 
+* `i` is an insensitive search. This will make the entire expression case-insensitive. serching for `/hElLo` would still match `Hello` or `HELLO` for example.
+
 
 ### Grouping and Capturing
+The `()` operator can be used for grouping or capturing. This can be useful if we need to extract information from text/strings. If there are multiple occurences, these will be exposed as an array. We will have the ability to access the data by using an index of the match.
+* `?:` can be used to disable the capturing group. Whatever was enclosed in the `()` will not appear in the list of captures matches. This can be written out as `a(?:bc)` for example.
+* `?<name>` can be added to add a name to the captured group. This can be written out as `a(?<captures>)` for example.
 
 ### Bracket Expressions
 
